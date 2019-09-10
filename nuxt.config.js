@@ -28,11 +28,16 @@ export default {
     { src: 'vue-material/dist/vue-material.min.css', lang: 'css' },
     { src: '~/assets/theme.scss', lang: 'scss'}
   ],
+
+  env: {
+    NEWS_API_KEY: "8eef3798c11a4a4f81250a1b9fc8d9e2"
+  },
   /*
   ** Plugins to load before mounting the App
   */
   plugins: [
-    { src: '~/plugins/vue-material' }
+    { src: '~/plugins/vue-material' },
+    { src: '~/plugins/axios' }
   ],
   /*
   ** Nuxt.js dev-modules
@@ -45,12 +50,21 @@ export default {
   modules: [
     // Doc: https://axios.nuxtjs.org/usage
     '@nuxtjs/axios',
+    '@nuxtjs/proxy'
   ],
   /*
   ** Axios module configuration
   ** See https://axios.nuxtjs.org/options
   */
   axios: {
+    credentials: true,
+    proxy: true
+  },
+  proxy: {
+    "/api/": {
+      target: "https://newsapi.org/v2/",
+      pathRewrite: { "^/api/": "" }
+    }
   },
   /*
   ** Build configuration
