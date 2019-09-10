@@ -61,9 +61,13 @@
 
 <script>
 export default {
-  async asyncData({ app }) {
-    const topHeadlines = await app.$axios.$get('/api/top-headlines?country=us&apiKey=8eef3798c11a4a4f81250a1b9fc8d9e2');
-    return { headlines: topHeadlines.articles }
+  async fetch({ store }) {
+    await store.dispatch('loadHeadlines', '/api/top-headlines?country=us')
+  },
+  computed: {
+    headlines() {
+      return this.$store.getters.headlines
+    }
   }
 }
 </script>
