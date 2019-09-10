@@ -15,5 +15,8 @@
     "nuxt": "^2.0.0",
     "vue-material": "^1.0.0-beta-11"
   },
-  "devDependencies": {}
+  "devDependencies": {
+    "node-sass": "^4.12.0",
+    "sass-loader": "^8.0.0"
+  }
 }
